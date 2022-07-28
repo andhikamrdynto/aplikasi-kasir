@@ -974,7 +974,7 @@
         <div class="ie-warning">
             <h1>Warning!!</h1>
             <p>You are using an outdated version of Internet Explorer, please upgrade
-               <br/>to any of the following web browsers to access this website.
+                <br/>to any of the following web browsers to access this website.
             </p>
             <div class="iew-container">
                 <ul class="iew-download">
