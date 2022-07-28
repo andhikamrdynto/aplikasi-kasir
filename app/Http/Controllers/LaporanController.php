@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Laporan;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
@@ -13,7 +14,8 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        //
+        $laporan = Laporan::paginate();
+        return view('laporan.tampilanlaporan', compact('laporan'));
     }
 
     /**

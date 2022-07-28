@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('managers', function (Blueprint $table) {
             $table->id();
-            $table->string('daftar_menu');
-            $table->string('data_pegawai');
-            $table->string('aktivitas_pegawai');
+            $table->string('nama_manager');
+            $table->string('alamat');
+            $table->string('no_telp');
             $table->timestamps();
         });
     }

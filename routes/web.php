@@ -1,7 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\KasirController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +20,13 @@ use App\Http\Controllers\LoginController;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('dashboard');
 });
 
+Route::resource('kasir', KasirController::class);
+Route::resource('transaksi', TransaksiController::class);
+Route::resource('laporan', LaporanController::class);
+Route::resource('manager', ManagerController::class);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 

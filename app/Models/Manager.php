@@ -9,6 +9,6 @@ class Manager extends Model
 {
     protected $table = "managers";
     protected $fillable = [
-        'daftar_menu','data_pegawai'
+        'nama_manager','alamat','no_telp'
     ];
 }

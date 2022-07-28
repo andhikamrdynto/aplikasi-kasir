@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menu;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -13,7 +14,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        $menu = Menu::paginate();
+        return view('menu.tampilanmenu', compact('menu'));
     }
 
     /**

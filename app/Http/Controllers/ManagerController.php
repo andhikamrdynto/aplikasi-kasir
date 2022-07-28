@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Manager;
 use Illuminate\Http\Request;
 
 class ManagerController extends Controller
@@ -13,7 +14,8 @@ class ManagerController extends Controller
      */
     public function index()
     {
-        //
+        $manager = Manager::paginate();
+        return view('manager.tampilanmanajer', compact('manager'));
     }
 
     /**
