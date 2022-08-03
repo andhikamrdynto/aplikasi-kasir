@@ -25,7 +25,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+        return view('menu.create');
     }
 
     /**
@@ -36,7 +36,19 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'daftar_menu' => 'required',
+            'harga_menu' => 'required',
+            'stock_menu' => 'required',
+        ]);
+
+        Menu::create([
+            'daftar_menu' => $request->daftar_menu,
+            'harga_menu' => $request->harga_menu,
+            'stock_menu' => $request->stock_menu
+        ]);
+        
+        return redirect('/menu')->with('success', 'Data Berhasil Ditambahkan');
     }
 
     /**
@@ -58,7 +70,8 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        //
+        $menu = Menu::findorfail($id);
+        return view('menu.edit', compact('menu'));
     }
 
     /**
@@ -70,7 +83,15 @@ class MenuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'daftar_menu' => 'required',
+            'harga_menu' => 'required',
+            'stock_menu' => 'required'
+        ]);
+
+        $menu = Menu::findorfail($id);
+        $menu->update($request->all());
+        return redirect('menu')->with('success','Data Berhasil Di Update');
     }
 
     /**
@@ -81,6 +102,7 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Menu::destroy($id);
+        return redirect('menu')->with('flash_massage', 'menu deleted!');
     }
 }

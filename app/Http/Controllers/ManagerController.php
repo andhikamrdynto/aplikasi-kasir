@@ -25,7 +25,7 @@ class ManagerController extends Controller
      */
     public function create()
     {
-        //
+        return view('manager.create');
     }
 
     /**
@@ -36,7 +36,19 @@ class ManagerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'nama_manager' => 'required',
+            'alamat' => 'required',
+            'no_telp' => 'required',
+        ]);
+
+        Manager::create([
+            'nama_manager' => $request->nama_manager,
+            'alamat' => $request->alamat,
+            'no_telp' => $request->no_telp
+        ]);
+        
+        return redirect('/manager')->with('success', 'Data Berhasil Ditambahkan');
     }
 
     /**
@@ -58,7 +70,8 @@ class ManagerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $manager = Manager::findorfail($id);
+        return view('manager.edit', compact('manager'));
     }
 
     /**
@@ -70,7 +83,15 @@ class ManagerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'nama_manager' => 'required',
+            'alamat' => 'required',
+            'no_telp' => 'required'
+        ]);
+
+        $manager = Manager::findorfail($id);
+        $manager->update($request->all());
+        return redirect('manager')->with('success','Data Berhasil Di Update');
     }
 
     /**
@@ -81,6 +102,7 @@ class ManagerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Manager::destroy($id);
+        return redirect('manager')->with('flash_massage', 'manager deleted!');
     }
 }

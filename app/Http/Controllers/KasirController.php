@@ -25,7 +25,7 @@ class KasirController extends Controller
      */
     public function create()
     {
-        //
+        return view('kasir.create');
     }
 
     /**
@@ -36,7 +36,21 @@ class KasirController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'nama_kasir' => 'required',
+            'alamat_kasir' => 'required',
+            'no_telp' => 'required',
+            'aktivitas' => 'required'
+        ]);
+
+        Kasir::create([
+            'nama_kasir' => $request->nama_kasir,
+            'alamat_kasir' => $request->alamat_kasir,
+            'no_telp' => $request->no_telp,
+            'aktivitas' => $request->aktivitas
+        ]);
+        
+        return redirect('/kasir')->with('success', 'Data Berhasil Ditambahkan');
     }
 
     /**
@@ -58,7 +72,8 @@ class KasirController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kasir = Kasir::findorfail($id);
+        return view('Kasir.edit', compact('kasir'));
     }
 
     /**
@@ -70,7 +85,15 @@ class KasirController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'nama_kasir' => 'required',
+            'alamat_kasir' => 'required',
+            'no_telp' => 'required'
+        ]);
+
+        $kasir = Kasir::findorfail($id);
+        $kasir->update($request->all());
+        return redirect('kasir')->with('success','Data Berhasil Di Update');
     }
 
     /**
@@ -81,6 +104,7 @@ class KasirController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Kasir::destroy($id);
+        return redirect('kasir')->with('flash_massage', 'Kasir deleted!');
     }
 }

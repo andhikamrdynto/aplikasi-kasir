@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('daftar_menu');
             $table->string('harga_menu');
-            $table->string('stock_menu');
+            $table->integer('stock_menu');
             $table->timestamps();
         });
     }

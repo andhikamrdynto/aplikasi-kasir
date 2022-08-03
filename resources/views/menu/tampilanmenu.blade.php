@@ -4,7 +4,7 @@
 
 <div class="card">
     <div class="card-body" >
-    <a style="padding: 30px 40px;" href="{{ url('menu/create') }}"class="btn btn-icon icon-left btn-primary mb-4"><span >Tambah</span></a>
+    <a style="padding: 10px 20px;" href="{{ url('menu/create') }}"class="btn icon-left btn-primary mb-4"><span >Tambah</span></a>
 
     <table class="table table-hover table-bordered dataTable" id="barang-table">
             <thead style="font-size: 14px">
@@ -25,8 +25,8 @@
                 <td>{{ $item->stock_menu }}</td>
                 <td style="display: flex">
                   <div class="dis d-flex">
-                  <a href="{{ url('menu/'.$item->id.'/edit') }}" class="btn btn-icon btn-warning ms-1" ><i class="fas fa-pen"></i></a>
-                  <form action="{{ url('barang',$item->id) }}" method="POST">
+                  <a href="{{ url('menu/'.$item->id.'/edit') }}" class="btn btn-icon btn-warning ms-1 mr-1" ><i class="fas fa-pen"></i></a>
+                  <form action="{{ url('menu',$item->id) }}" method="POST">
                   @csrf
                   @method('delete')
                   <button type="submit" class="btn btn-icon btn-danger delete ms-1" data-name="{{ $item->daftar_menu }}"><i class="fas fa-trash"></i></button>
