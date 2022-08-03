@@ -24,9 +24,15 @@ Route::get('/', function () {
 });
 
 Route::resource('kasir', KasirController::class);
+
 Route::resource('transaksi', TransaksiController::class);
+
 Route::resource('laporan', LaporanController::class);
+
 Route::resource('manager', ManagerController::class);
+
+Route::resource('menu', MenuController::class);
+
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 

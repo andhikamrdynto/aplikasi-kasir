@@ -4,7 +4,7 @@
 
 <div class="card">
     <div class="card-body" >
-    <a style="padding: 30px 40px;" href="{{ url('kasir/create') }}"class="btn btn-icon icon-left btn-primary mb-4"><span >Tambah</span></a>
+    <a style="padding: 10px 20px;" href="{{ url('kasir/create') }}"class="btn icon-left btn-primary mb-4"><span >Tambah</span></a>
 
     <table class="table table-hover table-bordered dataTable" id="kasir-table">
             <thead style="font-size: 14px">
