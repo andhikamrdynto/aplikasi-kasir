@@ -9,6 +9,6 @@ class Menu extends Model
 {
     protected $table = "menus";
     protected $fillable = [
-        'daftar_menu','harga_menu','stock_menu'
+        'daftar_menu','harga_menu','stock_menu','foto_menu'
     ];
 }
