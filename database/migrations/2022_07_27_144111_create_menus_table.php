@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('daftar_menu');
             $table->string('harga_menu');
             $table->integer('stock_menu');
+            $table->string('foto_menu');
             $table->timestamps();
         });
     }
