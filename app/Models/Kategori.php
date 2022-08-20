@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Laporan extends Model
+class Kategori extends Model
 {
-    protected $table = "laporans";
+    protected $table = "kategoris";
     protected $fillable = [
-        'laporan_transaksi','daftar_menu_id','laporan_pendapatan_harian'
+        'daftar_menu_id','kategori'
     ];
 
-    public function laporan(){
+    public function menu(){
         return $this->belongsTo(Menu::class, 'daftar_menu_id');
     }
 }
+

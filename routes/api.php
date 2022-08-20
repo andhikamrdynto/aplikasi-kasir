@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('/menus', App\Http\Controllers\Api\MenuController::class);
+Route::apiResource('/kategoris', App\Http\Controllers\Api\KategoriController::class);
+Route::apiResource('/laporans', App\Http\Controllers\Api\LaporanController::class);
