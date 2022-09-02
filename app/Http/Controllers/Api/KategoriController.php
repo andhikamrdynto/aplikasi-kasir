@@ -34,13 +34,13 @@ class KategoriController extends Controller
         }
 
         //create post
-        $datamenu = Kategori::create([
+        $kategori = Kategori::create([
             'daftar_menu_id' => $request->daftar_menu_id,
             'kategori' => $request->kategori,
         ]);
 
         //return response
-        return new KategoriResource(true, 'Data kategori Berhasil Ditambahkan!', $datamenu);
+        return new KategoriResource(true, 'Data kategori Berhasil Ditambahkan!', $kategori);
     }
 
     public function show($kategori)
@@ -51,32 +51,41 @@ class KategoriController extends Controller
 
     public function update(Request $request, Kategori $kategori)
     {
-        //define validation rules
         $validator = Validator::make($request->all(), [
-            'daftar_menu_id' => 'required',
-            'kategori'     => 'required',
+            'daftar_menu_id'   => 'required',
+            'kategori' => 'required',
         ]);
-
-        //check if validation fails
+        
+        //response error validation
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            return response()->json($validator->errors(), 400);
         }
 
-        //check if image is not empty
-        if ($request) {
+        //find post by ID
+        $kategori = Kategori::findOrFail($kategori->id);
 
-            
-            //update post without image
+        if($kategori) {
+
+            //update post
             $kategori->update([
-                'daftar_menu' => $request->daftar_menu_id,
-                'kategori' => $request->kategori,
-                
+                'daftar_menu_id'     => $request->daftar_menu_id,
+                'kategori'   => $request->kategori
             ]);
 
-        } 
+            return response()->json([
+                'success' => true,
+                'message' => 'Kategori Updated',
+                'data'    => $kategori 
+            ], 200);
 
-        //return response
-        return new KategoriResource(true, 'Data kategori Berhasil Diubah!', $kategori);
+        }
+
+        //data post not found
+        return response()->json([
+            'success' => false,
+            'message' => 'Kategori Not Found',
+        ], 404);
+
     }
 
     public function destroy(Kategori $kategori)

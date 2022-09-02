@@ -80,7 +80,7 @@ class LaporanController extends Controller
         } 
 
         //return response
-        return new LaporanResource(true, 'Data kategori Berhasil Diubah!', $kategori);
+        return new LaporanResource(true, 'Data kategori Berhasil Diubah!', $laporan);
     }
 
     public function destroy(Laporan $laporan)
